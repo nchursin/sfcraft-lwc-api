@@ -1,18 +1,27 @@
-# Salesforce DX Project: Next Steps
+# LWC Promise API
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This is a small package that tends to replicate LWC backend APIs that don't support promises.
 
-## How Do You Plan to Deploy Your Changes?
+## WHY?!
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+That is probably the main question you may have if you stumbled across this repo. The main reason is I don't like the `@wire` decorator:
 
-## Configure Your Salesforce DX Project
+1. I hate the APIs that returns value and error as 2 output values, and you have to check that error is not empty before proceed. Just throw the goddamn error!
+1. This pervious point leads to code duplication - you have to check errors for emptiness everywhere
+1. When you need to load several records and you show a spinner while loading, your `isLoading` getter becomes messy.
+1. `wire` cuase some of our e2e tests go flaky. Probably we just don't know how to cook it here though.
+1. And the most important: `getRecord` cannot be promisified. At least I didn't found how to do it :(
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+## How to use it
 
-## Read All About It
+Instead of importing `getRecord` from LWC library, you can just use `getRecord` from `sfcraft_LwcApi`:
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+```javascript
+import getRecord from '@salesforce/apex/sfcraft_LwcApi.getRecord';
+
+...
+
+async connectedCallback () {
+    this.record = await getRecord({recordId: this.recordId, fields: ['Id', 'Name' ]});
+}
+```
