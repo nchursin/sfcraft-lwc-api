@@ -12,6 +12,12 @@ That is probably the main question you may have if you stumbled across this repo
 1. `wire` cuase some of our e2e tests go flaky. Probably we just don't know how to cook it here though.
 1. And the most important: `getRecord` cannot be promisified. At least I didn't found how to do it :(
 
+## Installation
+
+This is distributed as an unlocked package. Just install the latest version.
+
+Alternatively, you can clone this repo and push/deploy it to your org.
+
 ## How to use it
 
 Instead of importing `getRecord` from LWC library, you can just use `getRecord` from `sfcraft_LwcApi`:
