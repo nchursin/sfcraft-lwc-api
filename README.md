@@ -28,6 +28,8 @@ import getRecord from '@salesforce/apex/sfcraft_LwcApi.getRecord';
 ...
 
 async connectedCallback () {
+    this.isLoading = true;
     this.record = await getRecord({recordId: this.recordId, fields: ['Id', 'Name' ]});
+    this.isLoading = false;
 }
 ```
