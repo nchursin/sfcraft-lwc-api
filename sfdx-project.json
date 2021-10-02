@@ -2,11 +2,18 @@
   "packageDirectories": [
     {
       "path": "force-app",
-      "default": true
+      "default": true,
+      "package": "SFCraft LWC API",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT"
     }
   ],
   "name": "lwc-promise-api",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "52.0"
+  "sourceApiVersion": "52.0",
+  "packageAliases": {
+    "SFCraft LWC API": "0Ho6g000000Xa1hCAC",
+    "SFCraft LWC API@0.1.0-1": "04t6g000008jjS7AAI"
+  }
 }

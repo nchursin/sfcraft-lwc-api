@@ -1,9 +1,10 @@
 {
-  "name": "salesforce-app",
+  "name": "sfcraft-lwc-api",
   "private": true,
   "version": "1.0.0",
   "description": "Salesforce App",
   "scripts": {
+    "package:version:create": "sfdx force:package:version:create -p 'SFCraft LWC API' -d force-app -w 10 -x",
     "lint": "npm run lint:lwc && npm run lint:aura",
     "lint:aura": "eslint **/aura/**",
     "lint:lwc": "eslint **/lwc/**",
