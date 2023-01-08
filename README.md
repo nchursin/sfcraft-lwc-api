@@ -33,3 +33,15 @@ async connectedCallback () {
     this.isLoading = false;
 }
 ```
+
+## Extending
+
+### Error handling
+
+You can add aditional error handling (e.g. logging). To do so:
+
+1. Create a custom implementation of `sfcraft_ILwcApiErrorHandler`.
+1. Create or edit `sfcraft_LwcApiSettings__c` hierarchy custom setting record.
+1. Populate `ErrorHandlerImplementation__c` with your class name.
+
+This will be called prior to wrapping exception into `AuraHandledException`.
