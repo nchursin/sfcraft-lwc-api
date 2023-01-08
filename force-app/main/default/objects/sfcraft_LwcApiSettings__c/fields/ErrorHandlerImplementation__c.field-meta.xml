@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ErrorHandlerImplementation__c</fullName>
+    <defaultValue>&quot;sfcraft_LwcApiDefaultErrorHandler&quot;</defaultValue>
+    <description
+    >sfcraft_ILwcApiErrorHandler implementation to run before wrapping an error into the AuraHandledException</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
     <inlineHelpText
     >sfcraft_ILwcApiErrorHandler implementation to run before wrapping an error into the AuraHandledException</inlineHelpText>
     <label>Error Handler Implementation</label>
     <length>255</length>
     <required>true</required>
+    <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>false</unique>
 </CustomField>

@@ -13,7 +13,8 @@ public with sharing class sfcraft_LwcApi {
     private static sfcraft_ILwcApiErrorHandler errorHandler {
         get {
             if (null == errorHandler) {
-                errorHandler = new sfcraft_LwcApiDefaultErrorHandler();
+                errorHandler = sfcraft_LwcApiDependencies.getInstance()
+                    .getErrorHandler();
             }
             return errorHandler;
         }
