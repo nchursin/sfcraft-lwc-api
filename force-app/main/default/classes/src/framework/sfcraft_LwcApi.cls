@@ -1,5 +1,6 @@
 public with sharing class sfcraft_LwcApi {
-    private static sfcraft_LwcApiService service {
+    @TestVisible
+    private static sfcraft_ILwcApiService service {
         get {
             if (null == service) {
                 service = new sfcraft_LwcApiService();
@@ -9,12 +10,25 @@ public with sharing class sfcraft_LwcApi {
         set;
     }
 
+    private static sfcraft_ILwcApiErrorHandler errorHandler {
+        get {
+            if (null == errorHandler) {
+                errorHandler = new sfcraft_LwcApiDefultErrorHandler();
+            }
+            return errorHandler;
+        }
+        set;
+    }
+
     @AuraEnabled
     public static SObject getRecord(Id recordId, List<String> fields) {
         try {
             return service.getRecord(recordId, fields);
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            errorHandler.handleException(e);
+            Exception newEx = new AuraHandledException(e.getMessage());
+            newEx.setMessage(e.getMessage());
+            throw newEx;
         }
     }
 }

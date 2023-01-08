@@ -1,4 +1,4 @@
-public inherited sharing class sfcraft_LwcApiService {
+public inherited sharing class sfcraft_LwcApiService implements sfcraft_ILwcApiService {
     public SObject getRecord(Id recordId, List<String> fields) {
         SObjectType sobjType = recordId.getSobjectType();
         String fieldsJoined = String.join(fields, ', ');
